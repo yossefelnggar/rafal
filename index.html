@@ -1,611 +1,1681 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>رافال للسياحة - الحج والعمرة</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        :root {
-            --bg-primary: #f0f4f8;
-            --bg-secondary: #ffffff;
-            --bg-card: #ffffff;
-            --bg-glass: rgba(255,255,255,0.85);
-            --bg-input: #f8fafc;
-            --bg-chat: #f1f5f9;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #94a3b8;
-            --text-on-gold: #0f172a;
-            --gold: #d4a843;
-            --gold-light: #e8c96a;
-            --gold-dark: #b8922e;
-            --gold-glow: rgba(212,168,67,0.25);
-            --border-light: #e2e8f0;
-            --border-gold: rgba(212,168,67,0.3);
-            --border-glass: rgba(255,255,255,0.5);
-            --success: #10b981;
-            --success-bg: rgba(16,185,129,0.1);
-            --danger: #ef4444;
-            --danger-bg: rgba(239,68,68,0.1);
-            --warning: #f59e0b;
-            --warning-bg: rgba(245,158,11,0.1);
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-            --shadow-md: 0 8px 25px rgba(0,0,0,0.08);
-            --shadow-lg: 0 20px 50px rgba(0,0,0,0.12);
-            --shadow-gold: 0 8px 25px rgba(212,168,67,0.2);
-            --header-bg: linear-gradient(135deg,#0a1f2e 0%,#0d3d4d 50%,#0a2a35 100%);
-            --msg-admin-bg: linear-gradient(135deg,rgba(212,168,67,0.15),rgba(212,168,67,0.05));
-            --msg-admin-border: var(--gold);
-            --msg-client-bg: linear-gradient(135deg,rgba(16,185,129,0.1),rgba(16,185,129,0.05));
-            --msg-client-border: var(--success);
+      :root {
+        --bg: #f0f4f8;
+        --bg2: #fff;
+        --glass: rgba(255, 255, 255, 0.88);
+        --input: #f8fafc;
+        --chat: #f1f5f9;
+        --txt: #0f172a;
+        --txt2: #475569;
+        --muted: #94a3b8;
+        --on-gold: #0f172a;
+        --gold: #d4a843;
+        --gold-l: #e8c96a;
+        --gold-d: #b8922e;
+        --gold-glow: rgba(212, 168, 67, 0.25);
+        --border: #e2e8f0;
+        --border-g: rgba(212, 168, 67, 0.3);
+        --border-glass: rgba(255, 255, 255, 0.5);
+        --ok: #10b981;
+        --ok-bg: rgba(16, 185, 129, 0.1);
+        --err: #ef4444;
+        --err-bg: rgba(239, 68, 68, 0.1);
+        --warn: #f59e0b;
+        --warn-bg: rgba(245, 158, 11, 0.1);
+        --sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --md: 0 8px 25px rgba(0, 0, 0, 0.08);
+        --lg: 0 20px 50px rgba(0, 0, 0, 0.12);
+        --sg: 0 8px 25px rgba(212, 168, 67, 0.2);
+        --hdr: linear-gradient(135deg, #0a1f2e 0%, #0d3d4d 50%, #0a2a35 100%);
+        --msg-a: linear-gradient(
+          135deg,
+          rgba(212, 168, 67, 0.15),
+          rgba(212, 168, 67, 0.05)
+        );
+        --msg-c: linear-gradient(
+          135deg,
+          rgba(16, 185, 129, 0.1),
+          rgba(16, 185, 129, 0.05)
+        );
+      }
+      [data-theme="dark"] {
+        --bg: #0a1f2e;
+        --bg2: #0d2b3a;
+        --glass: rgba(255, 255, 255, 0.06);
+        --input: rgba(255, 255, 255, 0.05);
+        --chat: rgba(0, 0, 0, 0.2);
+        --txt: #f1f5f9;
+        --txt2: #cbd5e1;
+        --muted: #94a3b8;
+        --gold-glow: rgba(212, 168, 67, 0.3);
+        --border: rgba(255, 255, 255, 0.08);
+        --border-glass: rgba(255, 255, 255, 0.1);
+        --ok: #34d399;
+        --ok-bg: rgba(16, 185, 129, 0.15);
+        --err: #f87171;
+        --err-bg: rgba(239, 68, 68, 0.15);
+        --warn: #fbbf24;
+        --warn-bg: rgba(245, 158, 11, 0.15);
+        --sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+        --md: 0 8px 25px rgba(0, 0, 0, 0.4);
+        --lg: 0 20px 50px rgba(0, 0, 0, 0.5);
+        --hdr: linear-gradient(135deg, #070f17 0%, #0a1f2e 50%, #0d2b3a 100%);
+        --msg-a: linear-gradient(
+          135deg,
+          rgba(212, 168, 67, 0.12),
+          rgba(212, 168, 67, 0.04)
+        );
+        --msg-c: linear-gradient(
+          135deg,
+          rgba(52, 211, 153, 0.1),
+          rgba(52, 211, 153, 0.04)
+        );
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        font-family: "Tajawal", sans-serif;
+        background: var(--bg);
+        color: var(--txt);
+        min-height: 100vh;
+        overflow-x: hidden;
+        transition:
+          background 0.4s,
+          color 0.4s;
+      }
+      .bg-fx {
+        position: fixed;
+        inset: 0;
+        background-image:
+          radial-gradient(
+            circle at 20% 50%,
+            var(--gold-glow) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(26, 90, 110, 0.1) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+      /* THEME */
+      .theme-btn {
+        position: fixed;
+        top: 18px;
+        left: 18px;
+        z-index: 9999;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 2px solid var(--gold);
+        background: var(--glass);
+        backdrop-filter: blur(15px);
+        color: var(--gold);
+        font-size: 1.3rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--sg);
+        transition: all 0.3s;
+      }
+      .theme-btn:hover {
+        transform: rotate(20deg) scale(1.1);
+      }
+      /* WA */
+      .wa-btn {
+        position: fixed;
+        bottom: 25px;
+        left: 18px;
+        z-index: 9999;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        border: none;
+        font-size: 1.6rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        transition: all 0.3s;
+        animation: waPulse 2.5s infinite;
+      }
+      @keyframes waPulse {
+        0%,
+        100% {
+          box-shadow:
+            0 8px 25px rgba(37, 211, 102, 0.4),
+            0 0 0 0 rgba(37, 211, 102, 0.3);
         }
-        [data-theme="dark"] {
-            --bg-primary: #0a1f2e;
-            --bg-secondary: #0d2b3a;
-            --bg-card: rgba(255,255,255,0.04);
-            --bg-glass: rgba(255,255,255,0.06);
-            --bg-input: rgba(255,255,255,0.05);
-            --bg-chat: rgba(0,0,0,0.2);
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --text-on-gold: #0f172a;
-            --gold: #d4a843;
-            --gold-light: #e8c96a;
-            --gold-dark: #b8922e;
-            --gold-glow: rgba(212,168,67,0.3);
-            --border-light: rgba(255,255,255,0.08);
-            --border-gold: rgba(212,168,67,0.3);
-            --border-glass: rgba(255,255,255,0.1);
-            --success: #34d399;
-            --success-bg: rgba(16,185,129,0.15);
-            --danger: #f87171;
-            --danger-bg: rgba(239,68,68,0.15);
-            --warning: #fbbf24;
-            --warning-bg: rgba(245,158,11,0.15);
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
-            --shadow-md: 0 8px 25px rgba(0,0,0,0.4);
-            --shadow-lg: 0 20px 50px rgba(0,0,0,0.5);
-            --shadow-gold: 0 8px 25px rgba(212,168,67,0.25);
-            --header-bg: linear-gradient(135deg,#070f17 0%,#0a1f2e 50%,#0d2b3a 100%);
-            --msg-admin-bg: linear-gradient(135deg,rgba(212,168,67,0.12),rgba(212,168,67,0.04));
-            --msg-client-bg: linear-gradient(135deg,rgba(52,211,153,0.1),rgba(52,211,153,0.04));
+        60% {
+          box-shadow:
+            0 8px 25px rgba(37, 211, 102, 0.4),
+            0 0 0 14px rgba(37, 211, 102, 0);
         }
-        *{box-sizing:border-box;outline:none;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
-        body{font-family:'Tajawal',sans-serif;background:var(--bg-primary);color:var(--text-primary);min-height:100vh;overflow-x:hidden;position:relative;transition:background .5s ease,color .5s ease}
-        .bg-pattern{position:fixed;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(circle at 20% 50%,var(--gold-glow) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(26,90,110,.1) 0%,transparent 50%),radial-gradient(circle at 50% 80%,var(--gold-glow) 0%,transparent 50%);pointer-events:none;z-index:0;transition:opacity .5s}
-        .theme-toggle{position:fixed;top:20px;left:20px;z-index:10000;width:50px;height:50px;border-radius:50%;border:2px solid var(--gold);background:var(--bg-glass);backdrop-filter:blur(15px);color:var(--gold);font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-gold);transition:all .3s ease}
-        .theme-toggle:hover{transform:scale(1.1) rotate(15deg);box-shadow:0 0 30px var(--gold-glow)}
-        .whatsapp-btn{position:fixed;bottom:30px;left:20px;z-index:9999;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);border:none;font-size:1.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 25px rgba(37,211,102,.4);transition:all .3s ease;animation:waPulse 2s infinite}
-        .whatsapp-btn:hover{transform:scale(1.1);box-shadow:0 12px 35px rgba(37,211,102,.5)}
-        @keyframes waPulse{0%,100%{box-shadow:0 8px 25px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.3)}50%{box-shadow:0 8px 25px rgba(37,211,102,.4),0 0 0 15px rgba(37,211,102,0)}}
-        .kaaba-icon{width:80px;height:80px;margin:0 auto 20px;filter:drop-shadow(0 0 20px var(--gold-glow));transition:filter .5s}
-        .glass-card{background:var(--bg-glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border-glass);border-radius:32px;padding:35px 25px;box-shadow:var(--shadow-md),inset 0 1px 0 rgba(255,255,255,.05);transition:all .5s ease}
-        .header{background:var(--header-bg);text-align:center;padding:50px 20px 100px;position:relative;z-index:1;border-bottom:4px solid var(--gold);border-bottom-left-radius:80px;border-bottom-right-radius:80px;box-shadow:var(--shadow-lg);transition:all .5s}
-        .header h1{font-family:'Amiri',serif;font-size:2.8rem;color:var(--gold);text-shadow:0 2px 20px var(--gold-glow);margin-bottom:8px;letter-spacing:1px}
-        .header p{color:rgba(255,255,255,.7);font-size:1rem;font-weight:500;line-height:1.6}
-        .container{max-width:480px;margin:-60px auto 0;padding:0 20px 100px;position:relative;z-index:1}
-
-        /* About Section */
-        .about-card{background:var(--bg-card);border-radius:24px;border:1px solid var(--border-gold);overflow:hidden;margin-bottom:20px;box-shadow:var(--shadow-md);transition:all .5s}
-        .about-card-inner{padding:25px}
-        .about-card-inner h3{color:var(--gold);font-family:'Amiri',serif;font-size:1.3rem;margin-bottom:12px;text-align:center}
-        .about-card-inner p{color:var(--text-secondary);font-size:.95rem;line-height:1.9;text-align:center}
-
-        /* Ads */
-        .ad-card{background:var(--bg-card);border-radius:24px;border:1px solid var(--border-gold);overflow:hidden;margin-bottom:20px;box-shadow:var(--shadow-md);animation:fadeInUp .6s ease;transition:all .5s}
-        .ad-img{width:100%;height:180px;object-fit:cover;border-bottom:2px solid var(--gold)}
-        .ad-body{padding:20px}
-        .ad-body h3{color:var(--gold);font-size:1.2rem;font-family:'Amiri',serif;margin-bottom:8px}
-        .ad-body p{color:var(--text-secondary);font-size:.9rem;line-height:1.7}
-        .btn{width:100%;padding:18px 24px;border-radius:20px;font-family:'Tajawal',sans-serif;font-weight:700;font-size:1.05rem;cursor:pointer;border:none;transition:all .3s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden}
-        .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .5s}
-        .btn:hover::before{left:100%}
-        .btn:hover{transform:translateY(-3px)}
-        .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--text-on-gold);box-shadow:var(--shadow-gold)}
-        .btn-gold:hover{box-shadow:0 12px 35px var(--gold-glow)}
-        .btn-outline{background:transparent;border:2px solid var(--border-light);color:var(--text-primary);margin-top:12px}
-        .btn-outline:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-glow)}
-        .btn-whatsapp{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;margin-top:12px;box-shadow:0 8px 25px rgba(37,211,102,.3)}
-        .btn-whatsapp:hover{box-shadow:0 12px 35px rgba(37,211,102,.4)}
-        .input-field{width:100%;padding:18px 20px;border-radius:18px;border:2px solid var(--border-light);background:var(--bg-input);color:var(--text-primary);font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:500;text-align:right;margin-bottom:14px;transition:all .3s}
-        .input-field::placeholder{color:var(--text-muted)}
-        .input-field:focus{border-color:var(--gold);background:var(--gold-glow);box-shadow:0 0 20px var(--gold-glow)}
-        .input-label{display:block;color:var(--gold);font-weight:700;font-size:.85rem;margin-bottom:8px;margin-right:5px}
-        .file-input-wrapper{position:relative;overflow:hidden;display:inline-block;width:100%;margin-bottom:14px}
-        .file-input-wrapper input[type=file]{position:absolute;left:-9999px}
-        .file-input-label{display:block;padding:18px 20px;border-radius:18px;border:2px dashed var(--border-gold);background:var(--gold-glow);color:var(--text-muted);text-align:center;cursor:pointer;transition:all .3s;font-weight:500}
-        .file-input-label:hover{border-color:var(--gold);background:rgba(212,168,67,.08);color:var(--gold)}
-        .success-card{background:var(--success-bg);border:2px dashed var(--success);border-radius:30px;padding:40px 25px;text-align:center}
-        .success-card h2{color:var(--success);font-size:1.5rem;margin-bottom:15px}
-        .id-display{font-size:3rem;font-weight:900;color:var(--gold);letter-spacing:8px;text-shadow:0 0 30px var(--gold-glow);margin:20px 0}
-        .status-card{border-radius:24px;padding:25px;margin-top:20px;text-align:center;border:1px solid;transition:all .5s}
-        .status-accepted{background:var(--success-bg);border-color:var(--success);color:var(--success)}
-        .status-rejected{background:var(--danger-bg);border-color:var(--danger);color:var(--danger)}
-        .status-pending{background:var(--warning-bg);border-color:var(--warning);color:var(--warning)}
-        .profile-header{text-align:center;margin-bottom:25px}
-        .profile-img{width:120px;height:120px;border-radius:50%;border:4px solid var(--gold);object-fit:cover;box-shadow:0 0 30px var(--gold-glow);margin-bottom:15px;background:var(--bg-secondary)}
-        .profile-name{font-size:1.5rem;font-weight:800;color:var(--gold)}
-
-        /* Chat */
-        .chat-section{margin-top:20px}
-        .chat-title{font-family:'Amiri',serif;color:var(--gold);font-size:1.1rem;margin-bottom:12px;text-align:center;padding:10px;background:var(--gold-glow);border-radius:15px;border:1px solid var(--border-gold)}
-        .chat-box{background:var(--bg-chat);border-radius:24px;padding:20px;max-height:400px;overflow-y:auto;border:1px solid var(--border-light);transition:all .5s}
-        .msg-bubble{padding:15px 18px;border-radius:20px;margin-bottom:14px;font-size:.95rem;line-height:1.7;box-shadow:var(--shadow-sm);animation:slideIn .3s ease;transition:all .5s}
-        .msg-admin{background:var(--msg-admin-bg);border-right:4px solid var(--gold);border-radius:20px 20px 0 20px;text-align:right;color:var(--text-primary)}
-        .msg-client{background:var(--msg-client-bg);border-left:4px solid var(--success);border-radius:20px 20px 20px 0;text-align:right;color:var(--text-primary)}
-        .msg-sender{font-size:.72rem;font-weight:900;margin-bottom:6px}
-        .msg-admin .msg-sender{color:var(--gold)}
-        .msg-client .msg-sender{color:var(--success)}
-        .msg-date{display:block;font-size:.68rem;color:var(--text-muted);margin-top:6px;text-align:left}
-        .chat-input-row{display:flex;gap:10px;margin-top:14px}
-        .chat-input-row input{flex:1;padding:14px 18px;border-radius:18px;border:2px solid var(--border-light);background:var(--bg-input);color:var(--text-primary);font-family:'Tajawal',sans-serif;font-size:.95rem;text-align:right;transition:all .3s}
-        .chat-input-row input:focus{border-color:var(--gold);box-shadow:0 0 15px var(--gold-glow)}
-        .chat-send-btn{padding:14px 20px;border-radius:18px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--text-on-gold);border:none;font-weight:800;cursor:pointer;font-size:1.1rem;transition:all .3s;white-space:nowrap;flex-shrink:0}
-        .chat-send-btn:hover{transform:scale(1.05);box-shadow:var(--shadow-gold)}
-
-        .trip-selector{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-        .trip-option{background:var(--bg-input);border:2px solid var(--border-light);border-radius:18px;padding:20px 10px;text-align:center;cursor:pointer;transition:all .3s}
-        .trip-option:hover{border-color:var(--gold);background:var(--gold-glow)}
-        .trip-option.selected{border-color:var(--gold);background:var(--gold-glow);box-shadow:0 0 20px var(--gold-glow)}
-        .trip-option .icon{font-size:2rem;margin-bottom:8px;display:block}
-        .trip-option .label{font-weight:700;color:var(--text-primary);font-size:.9rem}
-
-        /* Destination Selector */
-        .dest-select{width:100%;padding:18px 20px;border-radius:18px;border:2px solid var(--border-light);background:var(--bg-input);color:var(--text-primary);font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:500;text-align:right;margin-bottom:14px;transition:all .3s;appearance:none;cursor:pointer}
-        .dest-select:focus{border-color:var(--gold);background:var(--gold-glow);box-shadow:0 0 20px var(--gold-glow)}
-
-        @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-        .hidden{display:none!important}
-        ::-webkit-scrollbar{width:6px}
-        ::-webkit-scrollbar-track{background:transparent}
-        ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
-        footer{text-align:center;padding:30px 20px;color:var(--text-muted);font-size:.78rem;font-weight:500;position:relative;z-index:1;line-height:2}
-        footer span{color:var(--gold)}
-        footer a{color:var(--gold);text-decoration:none}
-        .section-title{font-family:'Amiri',serif;color:var(--gold);font-size:1.3rem;margin-bottom:20px;text-align:center;position:relative}
-        .section-title::after{content:'';display:block;width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:10px auto 0}
-        .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:var(--bg-chat);padding:18px;border-radius:20px;margin-bottom:20px;border:1px solid var(--border-light);transition:all .5s}
-        .info-cell{text-align:center}
-        .info-cell label{display:block;font-size:.7rem;color:var(--gold);font-weight:900;margin-bottom:5px}
-        .info-cell span{font-weight:700;font-size:.9rem;color:var(--text-primary)}
-        .toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-100px);background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--text-on-gold);padding:16px 30px;border-radius:20px;font-weight:800;font-size:.95rem;box-shadow:var(--shadow-lg);z-index:999999;transition:transform .4s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;gap:10px}
-        .toast.show{transform:translateX(-50%) translateY(0)}
-        .loading-spinner{display:inline-block;width:20px;height:20px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
-        @keyframes spin{to{transform:rotate(360deg)}}
-    </style>
-</head>
-<body data-theme="light">
-<div class="bg-pattern"></div>
-<div class="toast" id="toast">✅ تمت العملية بنجاح</div>
-
-<button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع">
-    <span id="themeIcon">🌙</span>
-</button>
-
-<button class="whatsapp-btn" onclick="openWhatsApp()" title="تواصل عبر واتساب">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</button>
-
-<div class="header">
-    <svg class="kaaba-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 10L85 25V75L50 90L15 75V25L50 10Z" fill="url(#goldGrad)" stroke="#d4a843" stroke-width="2"/>
-        <path d="M50 10L85 25L50 40L15 25L50 10Z" fill="#1a1a2e" stroke="#d4a843" stroke-width="1.5"/>
-        <rect x="25" y="45" width="50" height="30" rx="2" fill="#1a1a2e" stroke="#d4a843" stroke-width="1.5"/>
-        <path d="M20 42H80" stroke="#d4a843" stroke-width="2"/>
-        <path d="M22 42L22 78M78 42L78 78" stroke="#d4a843" stroke-width="1"/>
-        <rect x="42" y="55" width="16" height="20" rx="1" fill="#d4a843" opacity=".8"/>
-        <defs><linearGradient id="goldGrad" x1="15" y1="10" x2="85" y2="90" gradientUnits="userSpaceOnUse"><stop stop-color="#d4a843"/><stop offset="1" stop-color="#b8922e"/></linearGradient></defs>
-    </svg>
-    <h1>رافال للسياحة</h1>
-    <p>نظام إدارة الحج والعمرة والسفر الخارجي</p>
-</div>
-
-<div class="container">
-    <!-- About Section -->
-    <div id="aboutArea"></div>
-
-    <!-- Ads Area -->
-    <div id="adsArea"></div>
-
-    <div class="glass-card" id="mainCard">
-        <!-- Home -->
-        <div id="vHome">
-            <div class="section-title">اختر الخدمة</div>
-            <button class="btn btn-gold" onclick="nav('Reg')"><span>🕋</span> حجز رحلة جديدة</button>
-            <button class="btn btn-outline" onclick="nav('Track')"><span>🔍</span> استعلام برقم الحجز</button>
-            <button class="btn btn-outline" onclick="nav('Login')"><span>👤</span> دخول العميل</button>
-            <button class="btn btn-whatsapp" onclick="openWhatsApp()"><span>💬</span> تواصل معنا على واتساب</button>
-        </div>
-
-        <!-- Registration -->
-        <div id="vReg" class="hidden">
-            <div class="section-title">استمارة الحجز</div>
-            <div class="trip-selector" id="tripSelector"></div>
-            <input type="hidden" id="tripType" value="">
-
-            <label class="input-label">الاسم الرباعي</label>
-            <input class="input-field" id="rn" placeholder="أدخل الاسم كاملاً">
-
-            <label class="input-label">رقم الهاتف</label>
-            <input class="input-field" id="rp" placeholder="05xxxxxxxx" type="tel">
-
-            <label class="input-label">الوجهة / البرنامج</label>
-            <select class="dest-select" id="rd"><option value="">-- اختر الوجهة --</option></select>
-
-            <label class="input-label">عدد الأفراد</label>
-            <input class="input-field" id="rc" placeholder="عدد المسافرين" type="number" min="1" value="1">
-
-            <label class="input-label">تاريخ السفر المفضل</label>
-            <input class="input-field" id="rt" type="date">
-
-            <label class="input-label">صورة الجواز / الهوية</label>
-            <div class="file-input-wrapper">
-                <input type="file" id="ri" accept="image/*" onchange="updateFileLabel(this)">
-                <label class="file-input-label" for="ri" id="fileLabel">📎 اضغط لرفع الصورة</label>
-            </div>
-
-            <button class="btn btn-gold" id="subBtn" onclick="hReg()"><span>🚀</span> إرسال طلب الحجز</button>
-            <button class="btn btn-outline" onclick="nav('Home')"><span>↩️</span> رجوع</button>
-        </div>
-
-        <!-- Success -->
-        <div id="vSuccess" class="hidden">
-            <div class="success-card">
-                <div style="font-size:4rem;margin-bottom:15px">✅</div>
-                <h2>تم إرسال طلبك بنجاح!</h2>
-                <p style="color:var(--text-muted);margin-bottom:10px">رقم الاستعلام الخاص بك:</p>
-                <div class="id-display" id="showId">000000</div>
-                <p style="color:var(--text-muted);font-size:.85rem;margin-top:15px">احتفظ بهذا الرقم للاستعلام عن حالة طلبك</p>
-            </div>
-            <button class="btn btn-gold" style="margin-top:25px" onclick="location.reload()"><span>🏠</span> العودة للرئيسية</button>
-        </div>
-
-        <!-- Track -->
-        <div id="vTrack" class="hidden">
-            <div class="section-title">الاستعلام عن الحجز</div>
-            <input class="input-field" type="number" id="ti" placeholder="أدخل رقم الاستعلام">
-            <button class="btn btn-gold" onclick="hTrack()"><span>🔍</span> بحث</button>
-            <div id="tRes"></div>
-            <button class="btn btn-outline" onclick="nav('Home')"><span>↩️</span> رجوع</button>
-        </div>
-
-        <!-- Login -->
-        <div id="vLogin" class="hidden">
-            <div class="section-title">دخول العميل</div>
-            <input class="input-field" id="ui" placeholder="اسم المستخدم">
-            <input class="input-field" type="password" id="pi" placeholder="كلمة المرور">
-            <button class="btn btn-gold" onclick="hLogin()"><span>🛡️</span> تسجيل الدخول</button>
-            <button class="btn btn-outline" onclick="nav('Home')"><span>↩️</span> رجوع</button>
-        </div>
-
-        <!-- Profile -->
-        <div id="vProfile" class="hidden">
-            <div class="profile-header">
-                <img src="" id="uPh" class="profile-img" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23d4a843%22/><text x=%2250%22 y=%2265%22 text-anchor=%22middle%22 fill=%22%230a1f2e%22 font-size=%2240%22>👤</text></svg>'">
-                <div class="profile-name" id="uNm"></div>
-                <p style="color:var(--text-muted);margin-top:5px" id="uTrip"></p>
-            </div>
-            <div class="info-grid">
-                <div class="info-cell"><label>🎯 الوجهة</label><span id="uDest">--</span></div>
-                <div class="info-cell"><label>📅 التاريخ</label><span id="uDate">--</span></div>
-                <div class="info-cell"><label>👥 الأفراد</label><span id="uCount">--</span></div>
-                <div class="info-cell"><label>📊 الحالة</label><span id="uStatus">--</span></div>
-            </div>
-
-            <!-- Chat Section in Profile -->
-            <div class="chat-section" id="profileChatSection">
-                <div class="chat-title">💬 المحادثة مع الإدارة</div>
-                <div class="chat-box" id="uChat"></div>
-                <div class="chat-input-row">
-                    <button class="chat-send-btn" onclick="sendClientMsg()">إرسال ✉️</button>
-                    <input type="text" id="clientMsgInput" placeholder="اكتب رسالتك..." onkeypress="if(event.key==='Enter')sendClientMsg()">
-                </div>
-            </div>
-
-            <button class="btn btn-whatsapp" style="margin-top:15px" onclick="openWhatsApp()"><span>💬</span> تواصل مع الإدارة على واتساب</button>
-            <button class="btn btn-outline" style="border-color:var(--danger);color:var(--danger);margin-top:12px" onclick="location.reload()"><span>🔒</span> خروج آمن</button>
-        </div>
-    </div>
-</div>
-
-<footer>
-    رافال للسياحة © 2026 | <span>تخصصنا راحتكم</span><br>
-    تم التطوير بواسطة: <span>المهندس يوسف عبدالفتاح النجار</span> 
-    <a href="tel:01004434810">📞 01004434810</a><br>
-    و<span>المهندس يوسف غريب قميح</span>
-    <a href="tel:01112378906">📞 01112378906</a>
-</footer>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-analytics.js";
-import { getDatabase, ref, set, get, child, update } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyByDS1bBB_Ook1-sodJwpwVyiwtb_GF1TI",
-    authDomain: "rafal-d4284.firebaseapp.com",
-    databaseURL: "https://rafal-d4284-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "rafal-d4284",
-    storageBucket: "rafal-d4284.firebasestorage.app",
-    messagingSenderId: "116875524772",
-    appId: "1:116875524772:web:30a452bf7a944cedd4c431",
-    measurementId: "G-KXG6MKEW5D"
-};
-
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const dbFirebase = getDatabase(app);
-
-window.db = {
-    s: [], ads: [], pass: '123456',
-    about: { text: 'رافال للسياحة شركة متخصصة في تنظيم رحلات الحج والعمرة والسياحة الدينية، نسعى لتقديم أفضل الخدمات بأعلى مستوى من الراحة والاهتمام لضيوف الرحمن.', active: true },
-    tripTypes: [
-        {id:'umrah',name:'عمرة',icon:'🕋'},
-        {id:'hajj',name:'حج',icon:'🕌'},
-        {id:'religious',name:'سياحة دينية',icon:'✈️'},
-        {id:'visit',name:'زيارة خارجية',icon:'🌍'}
-    ],
-    destinations: ['عمرة رمضان - فندق 5 نجوم', 'عمرة مميزة - فندق 4 نجوم', 'حج الإفراد', 'حج القران', 'السياحة الدينية في تركيا', 'جولة الأندلس', 'الزيارات الخارجية الأوروبية']
-};
-
-window._currentBookingId = null;
-
-async function saveData() {
-    await set(ref(dbFirebase, 'rafalSystem'), window.db);
+      }
+      /* HEADER */
+      .hdr {
+        background: var(--hdr);
+        text-align: center;
+        padding: 45px 20px 90px;
+        border-bottom: 4px solid var(--gold);
+        border-radius: 0 0 70px 70px;
+        box-shadow: var(--lg);
+        position: relative;
+        z-index: 1;
+        transition: all 0.5s;
+      }
+      .hdr-logo {
+        width: 75px;
+        height: 75px;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hdr h1 {
+        font-family: "Amiri", serif;
+        font-size: 2.6rem;
+        color: var(--gold);
+        text-shadow: 0 2px 20px var(--gold-glow);
+        margin-bottom: 6px;
+      }
+      .hdr p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      /* CONTAINER */
+      .wrap {
+        max-width: 500px;
+        margin: -55px auto 0;
+        padding: 0 18px 100px;
+        position: relative;
+        z-index: 1;
+      }
+      /* GLASS CARD */
+      .card {
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--border-glass);
+        border-radius: 30px;
+        padding: 30px 24px;
+        box-shadow:
+          var(--md),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        transition: all 0.5s;
+        margin-bottom: 20px;
+        animation: fadeUp 0.5s ease;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* ABOUT */
+      .about-card {
+        background: var(--bg2);
+        border-radius: 22px;
+        border: 1px solid var(--border-g);
+        overflow: hidden;
+        box-shadow: var(--md);
+        margin-bottom: 18px;
+        transition: all 0.5s;
+        animation: fadeUp 0.5s ease;
+      }
+      .about-inner {
+        padding: 22px;
+        text-align: center;
+      }
+      .about-inner h3 {
+        color: var(--gold);
+        font-family: "Amiri", serif;
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+      }
+      .about-inner p {
+        color: var(--txt2);
+        font-size: 0.93rem;
+        line-height: 1.9;
+      }
+      /* ADS */
+      .ad-card {
+        background: var(--bg2);
+        border-radius: 22px;
+        border: 1px solid var(--border-g);
+        overflow: hidden;
+        box-shadow: var(--md);
+        margin-bottom: 18px;
+        animation: fadeUp 0.5s ease;
+        transition: all 0.5s;
+      }
+      .ad-img {
+        width: 100%;
+        height: 175px;
+        object-fit: cover;
+        border-bottom: 2px solid var(--gold);
+      }
+      .ad-body {
+        padding: 18px;
+      }
+      .ad-body h3 {
+        color: var(--gold);
+        font-size: 1.1rem;
+        font-family: "Amiri", serif;
+        margin-bottom: 8px;
+      }
+      .ad-body p {
+        color: var(--txt2);
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
+      /* SECTION TITLE */
+      .stitle {
+        font-family: "Amiri", serif;
+        color: var(--gold);
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        text-align: center;
+        position: relative;
+      }
+      .stitle::after {
+        content: "";
+        display: block;
+        width: 55px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        margin: 9px auto 0;
+      }
+      /* BUTTONS */
+      .btn {
+        width: 100%;
+        padding: 17px 22px;
+        border-radius: 20px;
+        font-family: "Tajawal", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+      }
+      .btn-gold {
+        background: linear-gradient(135deg, var(--gold), var(--gold-d));
+        color: var(--on-gold);
+        box-shadow: var(--sg);
+      }
+      .btn-gold:hover {
+        box-shadow: 0 12px 35px var(--gold-glow);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--border);
+        color: var(--txt);
+      }
+      .btn-outline:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        background: var(--gold-glow);
+      }
+      .btn-wa {
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        color: #fff;
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+      }
+      .btn-wa:hover {
+        box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+      }
+      /* INPUTS */
+      .lbl {
+        display: block;
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 0.82rem;
+        margin-bottom: 7px;
+        margin-right: 4px;
+      }
+      .inp {
+        width: 100%;
+        padding: 16px 18px;
+        border-radius: 17px;
+        border: 2px solid var(--border);
+        background: var(--input);
+        color: var(--txt);
+        font-family: "Tajawal", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        text-align: right;
+        margin-bottom: 14px;
+        transition: all 0.3s;
+      }
+      .inp::placeholder {
+        color: var(--muted);
+      }
+      .inp:focus {
+        border-color: var(--gold);
+        background: var(--gold-glow);
+        box-shadow: 0 0 18px var(--gold-glow);
+      }
+      .sel {
+        appearance: none;
+        cursor: pointer;
+      }
+      /* TRIP TYPE SELECTOR */
+      .trip-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .trip-opt {
+        background: var(--input);
+        border: 2px solid var(--border);
+        border-radius: 17px;
+        padding: 18px 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .trip-opt:hover,
+      .trip-opt.sel {
+        border-color: var(--gold);
+        background: var(--gold-glow);
+        box-shadow: 0 0 18px var(--gold-glow);
+      }
+      .trip-opt .icon {
+        font-size: 1.9rem;
+        margin-bottom: 7px;
+        display: block;
+      }
+      .trip-opt .lbl2 {
+        font-weight: 700;
+        color: var(--txt);
+        font-size: 0.88rem;
+      }
+      /* FILE UPLOAD */
+      .file-wrap {
+        position: relative;
+        margin-bottom: 14px;
+      }
+      .file-wrap input {
+        position: absolute;
+        left: -9999px;
+      }
+      .file-lbl {
+        display: block;
+        padding: 17px 18px;
+        border-radius: 17px;
+        border: 2px dashed var(--border-g);
+        background: var(--gold-glow);
+        color: var(--muted);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 500;
+      }
+      .file-lbl:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      /* STATUS CARDS */
+      .status-card {
+        border-radius: 22px;
+        padding: 24px;
+        margin-top: 18px;
+        text-align: center;
+        border: 2px solid;
+      }
+      .st-ok {
+        background: var(--ok-bg);
+        border-color: var(--ok);
+        color: var(--ok);
+      }
+      .st-rej {
+        background: var(--err-bg);
+        border-color: var(--err);
+        color: var(--err);
+      }
+      .st-pend {
+        background: var(--warn-bg);
+        border-color: var(--warn);
+        color: var(--warn);
+      }
+      /* PROFILE */
+      .profile-hdr {
+        text-align: center;
+        margin-bottom: 22px;
+      }
+      .profile-img {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        border: 4px solid var(--gold);
+        object-fit: cover;
+        box-shadow: 0 0 30px var(--gold-glow);
+        background: var(--bg2);
+      }
+      .profile-name {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--gold);
+        margin-top: 12px;
+      }
+      /* INFO GRID */
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 11px;
+        background: var(--chat);
+        padding: 16px;
+        border-radius: 18px;
+        margin-bottom: 18px;
+        border: 1px solid var(--border);
+        transition: all 0.5s;
+      }
+      .info-cell {
+        text-align: center;
+      }
+      .info-cell label {
+        display: block;
+        font-size: 0.68rem;
+        color: var(--gold);
+        font-weight: 900;
+        margin-bottom: 5px;
+      }
+      .info-cell span {
+        font-weight: 700;
+        font-size: 0.88rem;
+        color: var(--txt);
+      }
+      /* CHAT */
+      .chat-title {
+        font-family: "Amiri", serif;
+        color: var(--gold);
+        font-size: 1rem;
+        margin-bottom: 11px;
+        text-align: center;
+        padding: 9px;
+        background: var(--gold-glow);
+        border-radius: 13px;
+        border: 1px solid var(--border-g);
+      }
+      .chat-box {
+        background: var(--chat);
+        border-radius: 20px;
+        padding: 16px;
+        max-height: 380px;
+        overflow-y: auto;
+        border: 1px solid var(--border);
+        margin-bottom: 11px;
+        transition: all 0.5s;
+      }
+      .msg {
+        padding: 13px 16px;
+        border-radius: 18px;
+        margin-bottom: 12px;
+        font-size: 0.9rem;
+        line-height: 1.7;
+        box-shadow: var(--sm);
+        animation: slideIn 0.3s ease;
+        transition: all 0.5s;
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .msg-a {
+        background: var(--msg-a);
+        border-right: 4px solid var(--gold);
+        border-radius: 18px 18px 0 18px;
+        text-align: right;
+      }
+      .msg-c {
+        background: var(--msg-c);
+        border-left: 4px solid var(--ok);
+        border-radius: 18px 18px 18px 0;
+        text-align: right;
+      }
+      .msg-who {
+        font-size: 0.68rem;
+        font-weight: 900;
+        margin-bottom: 5px;
+      }
+      .msg-a .msg-who {
+        color: var(--gold);
+      }
+      .msg-c .msg-who {
+        color: var(--ok);
+      }
+      /* SEEN TICKS */
+      .msg-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 5px;
+      }
+      .msg-time {
+        font-size: 0.63rem;
+        color: var(--muted);
+      }
+      .ticks {
+        font-size: 0.75rem;
+      }
+      .tick-sent {
+        color: var(--muted);
+      }
+      .tick-seen {
+        color: #34b7f1;
+      }
+      /* CHAT INPUT */
+      .chat-row {
+        display: flex;
+        gap: 9px;
+        margin-top: 12px;
+      }
+      .chat-row input {
+        flex: 1;
+        padding: 13px 16px;
+        border-radius: 16px;
+        border: 2px solid var(--border);
+        background: var(--input);
+        color: var(--txt);
+        font-family: "Tajawal", sans-serif;
+        font-size: 0.92rem;
+        text-align: right;
+        transition: all 0.3s;
+      }
+      .chat-row input:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 12px var(--gold-glow);
+      }
+      .send-btn {
+        padding: 13px 18px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--gold), var(--gold-d));
+        color: var(--on-gold);
+        border: none;
+        font-weight: 800;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: all 0.3s;
+        flex-shrink: 0;
+      }
+      .send-btn:hover {
+        transform: scale(1.05);
+        box-shadow: var(--sg);
+      }
+      /* SUCCESS */
+      .suc-card {
+        background: var(--ok-bg);
+        border: 2px dashed var(--ok);
+        border-radius: 28px;
+        padding: 35px 22px;
+        text-align: center;
+      }
+      .big-id {
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: var(--gold);
+        letter-spacing: 6px;
+        text-shadow: 0 0 30px var(--gold-glow);
+        margin: 18px 0;
+      }
+      /* QR */
+      .qr-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin: 20px 0;
+        background: white;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: var(--sm);
+        border: 2px solid var(--border-g);
+      }
+      .qr-box p {
+        color: var(--txt2);
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+      #qrCanvas {
+        border-radius: 10px;
+      }
+      /* TOAST */
+      .toast {
+        position: fixed;
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-120px);
+        background: linear-gradient(135deg, var(--gold), var(--gold-d));
+        color: var(--on-gold);
+        padding: 14px 28px;
+        border-radius: 18px;
+        font-weight: 800;
+        font-size: 0.92rem;
+        box-shadow: var(--lg);
+        z-index: 999999;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .toast.show {
+        transform: translateX(-50%) translateY(0);
+      }
+      /* SPINNER */
+      .spin {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      /* HIDDEN */
+      .hidden {
+        display: none !important;
+      }
+      /* SCROLL */
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 3px;
+      }
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 28px 18px;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 500;
+        position: relative;
+        z-index: 1;
+        line-height: 2.2;
+      }
+      footer span {
+        color: var(--gold);
+      }
+      footer a {
+        color: var(--gold);
+        text-decoration: none;
+      }
+      /* CREDS BOX */
+      .creds-box {
+        background: var(--chat);
+        border-radius: 16px;
+        padding: 16px;
+        margin-top: 12px;
+        border: 1px solid var(--border);
+      }
+      .creds-row {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.95rem;
+      }
+      .creds-row b {
+        color: var(--gold);
+      }
+      /* 1. تعديل الكارت الأساسي عشان يفضل في مكانه */
+.card {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: 30px;
+    padding: 30px 24px;
+    box-shadow: var(--md);
+    margin-bottom: 20px;
+    position: relative; /* تأكيد مكانه */
+    z-index: 5; /* يخليه فوق الخلفية وبس */
+    display: block !important; /* ضمان إنه مش واخد hidden غلط */
 }
 
-async function loadData() {
-    try {
-        const snapshot = await get(child(ref(dbFirebase), 'rafalSystem'));
-        if (snapshot.exists()) {
-            window.db = snapshot.val();
+/* 2. إخفاء الـ input الافتراضي البايخ اللي ظاهر في الصورة */
+.file-wrap input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    width: 0;
+}
+
+/* 3. تعديل الزرار اللي بيفتح اختيار الصور عشان يكون واضح */
+.file-lbl {
+    display: block;
+    padding: 17px 18px;
+    border-radius: 17px;
+    border: 2px dashed var(--gold);
+    background: var(--gold-glow);
+    color: var(--txt);
+    text-align: center;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s;
+}
+    </style>
+  </head>
+  <body data-theme="light">
+    <div class="bg-fx"></div>
+    <div class="toast" id="toast"></div>
+
+    <button class="theme-btn" onclick="toggleTheme()">
+      <span id="thIcon">🌙</span>
+    </button>
+    <button class="wa-btn" onclick="openWA()" title="واتساب">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </button>
+
+    <div class="hdr">
+      <div class="hdr-logo">
+        <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
+          <path
+            d="M50 10L85 25V75L50 90L15 75V25L50 10Z"
+            fill="url(#gg)"
+            stroke="#d4a843"
+            stroke-width="2"
+          />
+          <path
+            d="M50 10L85 25L50 40L15 25L50 10Z"
+            fill="#1a1a2e"
+            stroke="#d4a843"
+            stroke-width="1.5"
+          />
+          <rect
+            x="25"
+            y="45"
+            width="50"
+            height="30"
+            rx="2"
+            fill="#1a1a2e"
+            stroke="#d4a843"
+            stroke-width="1.5"
+          />
+          <path d="M20 42H80" stroke="#d4a843" stroke-width="2" />
+          <rect
+            x="42"
+            y="55"
+            width="16"
+            height="20"
+            rx="1"
+            fill="#d4a843"
+            opacity=".85"
+          />
+          <defs>
+            <linearGradient id="gg" x1="15" y1="10" x2="85" y2="90">
+              <stop stop-color="#d4a843" />
+              <stop offset="1" stop-color="#b8922e" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <h1>رافال للسياحة</h1>
+      <p>نظام إدارة الحج والعمرة والسفر الخارجي</p>
+    </div>
+
+    <div class="wrap">
+      <!-- About -->
+      <div id="aboutArea"></div>
+      <!-- Ads — BELOW booking button area, shown after main card -->
+      <!-- Main Card -->
+      <div class="card" id="mainCard">
+        <!-- HOME -->
+        <div id="vHome">
+          <div class="stitle">اختر الخدمة</div>
+          <button class="btn btn-gold" onclick="nav('Reg')">
+            <span>🕋</span> حجز رحلة جديدة
+          </button>
+          <button class="btn btn-outline" onclick="nav('Track')">
+            <span>🔍</span> استعلام برقم الحجز أو الرقم القومي
+          </button>
+          <button class="btn btn-outline" onclick="nav('QRTrack')">
+            <span>📷</span> تتبع الحجز بـ QR Code
+          </button>
+          <button class="btn btn-outline" onclick="nav('Login')">
+            <span>👤</span> دخول العميل
+          </button>
+          <button class="btn btn-wa" onclick="openWA()">
+            <span>💬</span> تواصل معنا على واتساب
+          </button>
+        </div>
+
+        <!-- REGISTER -->
+        <div id="vReg" class="hidden">
+          <div class="stitle">استمارة الحجز</div>
+          <label class="lbl">نوع الرحلة</label>
+          <div class="trip-grid" id="tripGrid"></div>
+          <input type="hidden" id="tripType" />
+
+          <label class="lbl">الاسم الرباعي</label>
+          <input class="inp" id="rName" placeholder="أدخل الاسم كاملاً" />
+
+          <label class="lbl">رقم الهاتف</label>
+          <input class="inp" id="rPhone" placeholder="05xxxxxxxx" type="tel" />
+
+          <label class="lbl">الرقم القومي / رقم الجواز</label>
+          <input
+            class="inp"
+            id="rNatId"
+            placeholder="أدخل رقمك القومي أو رقم الجواز"
+          />
+
+          <label class="lbl">الوجهة / البرنامج</label>
+          <select class="inp sel" id="rDest">
+            <option value="">-- اختر الوجهة --</option>
+          </select>
+
+          <label class="lbl">عدد الأفراد</label>
+          <input
+            class="inp"
+            id="rCount"
+            placeholder="عدد المسافرين"
+            type="number"
+            min="1"
+            value="1"
+          />
+
+          <label class="lbl">تاريخ السفر المفضل</label>
+          <input class="inp" id="rDate" type="date" />
+
+          <label class="lbl">صورة الجواز / الهوية</label>
+          <div class="file-wrap">
+            <input
+              type="file"
+              id="rImg"
+              accept="image/*"
+              onchange="updateFileLbl(this)"
+            />
+            <label class="file-lbl" for="rImg" id="fileLbl"
+              >📎 اضغط لرفع الصورة</label
+            >
+          </div>
+
+          <button class="btn btn-gold" id="subBtn" onclick="doRegister()">
+            <span>🚀</span> إرسال طلب الحجز
+          </button>
+          <button class="btn btn-outline" onclick="nav('Home')">
+            <span>↩️</span> رجوع
+          </button>
+        </div>
+
+        <!-- SUCCESS -->
+        <div id="vSuccess" class="hidden">
+          <div class="suc-card">
+            <div style="font-size: 3.5rem; margin-bottom: 12px">✅</div>
+            <h2 style="color: var(--ok); margin-bottom: 10px">
+              تم إرسال طلبك بنجاح!
+            </h2>
+            <p style="color: var(--txt2); margin-bottom: 8px">
+              رقم الاستعلام الخاص بك:
+            </p>
+            <div class="big-id" id="showId">000000</div>
+            <p style="color: var(--txt2); font-size: 0.82rem">
+              يمكنك أيضاً الاستعلام بـ
+              <b style="color: var(--gold)">رقمك القومي</b>
+            </p>
+          </div>
+          <div class="qr-box" id="qrArea">
+            <p>📱 امسح هذا الـ QR للمتابعة السريعة</p>
+            <div id="qrCode"></div>
+            <button
+              class="btn btn-outline"
+              style="
+                width: auto;
+                padding: 10px 20px;
+                margin-bottom: 0;
+                font-size: 0.85rem;
+              "
+              onclick="downloadQR()"
+            >
+              ⬇️ تحميل QR كصورة
+            </button>
+          </div>
+          <button
+            class="btn btn-gold"
+            style="margin-top: 18px"
+            onclick="location.reload()"
+          >
+            <span>🏠</span> العودة للرئيسية
+          </button>
+        </div>
+
+        <!-- TRACK -->
+        <div id="vTrack" class="hidden">
+          <div class="stitle">الاستعلام عن الحجز</div>
+          <label class="lbl">رقم الحجز أو الرقم القومي / الجواز</label>
+          <input
+            class="inp"
+            type="text"
+            id="trackInput"
+            placeholder="أدخل رقم الحجز أو رقمك القومي"
+          />
+          <button class="btn btn-gold" onclick="doTrack()">
+            <span>🔍</span> بحث
+          </button>
+          <div id="trackRes"></div>
+          <button class="btn btn-outline" onclick="nav('Home')">
+            <span>↩️</span> رجوع
+          </button>
+        </div>
+
+        <!-- QR TRACK -->
+        <div id="vQRTrack" class="hidden">
+          <div class="stitle">تتبع الحجز بـ QR Code</div>
+          <div style="text-align: center; padding: 20px; color: var(--txt2)">
+            <div style="font-size: 4rem; margin-bottom: 15px">📷</div>
+            <p style="margin-bottom: 18px; line-height: 1.7">
+              لمسح QR Code، ابحث عن رمز QR المرفق برسالتك أو الذي تلقيته عند
+              تسجيل الحجز.
+            </p>
+            <p
+              style="
+                font-size: 0.85rem;
+                color: var(--muted);
+                margin-bottom: 20px;
+              "
+            >
+              أو أدخل الرقم يدوياً:
+            </p>
+            <input
+              class="inp"
+              type="text"
+              id="qrInput"
+              placeholder="أدخل رقم الحجز"
+            />
+            <button class="btn btn-gold" onclick="doQRTrack()">
+              <span>🔍</span> استعلام
+            </button>
+          </div>
+          <div id="qrTrackRes"></div>
+          <button class="btn btn-outline" onclick="nav('Home')">
+            <span>↩️</span> رجوع
+          </button>
+        </div>
+
+        <!-- LOGIN -->
+        <div id="vLogin" class="hidden">
+          <div class="stitle">دخول العميل</div>
+          <label class="lbl">اسم المستخدم</label>
+          <input class="inp" id="uLogin" placeholder="اسم المستخدم" />
+          <label class="lbl">كلمة المرور</label>
+          <input
+            class="inp"
+            type="password"
+            id="pLogin"
+            placeholder="كلمة المرور"
+          />
+          <button class="btn btn-gold" onclick="doLogin()">
+            <span>🛡️</span> تسجيل الدخول
+          </button>
+          <button class="btn btn-outline" onclick="nav('Home')">
+            <span>↩️</span> رجوع
+          </button>
+        </div>
+
+        <!-- PROFILE -->
+        <div id="vProfile" class="hidden">
+          <div class="profile-hdr">
+            <img
+              src=""
+              id="uPh"
+              class="profile-img"
+              onerror="
+                this.src =
+                  'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23d4a843%22/><text x=%2250%22 y=%2265%22 text-anchor=%22middle%22 fill=%22%230a1f2e%22 font-size=%2240%22>👤</text></svg>'
+              "
+            />
+            <div class="profile-name" id="uName"></div>
+            <p style="color: var(--muted); margin-top: 5px" id="uTrip"></p>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <label>🎯 الوجهة</label><span id="uDest">--</span>
+            </div>
+            <div class="info-cell">
+              <label>📅 التاريخ</label><span id="uDate">--</span>
+            </div>
+            <div class="info-cell">
+              <label>👥 الأفراد</label><span id="uCount">--</span>
+            </div>
+            <div class="info-cell">
+              <label>📊 الحالة</label><span id="uStatus">--</span>
+            </div>
+          </div>
+          <!-- CHAT -->
+          <div>
+            <div class="chat-title">💬 المحادثة مع الإدارة</div>
+            <div class="chat-box" id="uChat"></div>
+            <div class="chat-row">
+              <button class="send-btn" onclick="sendClientMsg()">
+                إرسال ✉️
+              </button>
+              <input
+                type="text"
+                id="clientMsg"
+                placeholder="اكتب رسالتك..."
+                onkeypress="if (event.key === 'Enter') sendClientMsg();"
+              />
+            </div>
+          </div>
+          <button
+            class="btn btn-wa"
+            style="margin-top: 15px"
+            onclick="openWA()"
+          >
+            <span>💬</span> تواصل مع الإدارة على واتساب
+          </button>
+          <button
+            class="btn btn-outline"
+            style="
+              border-color: var(--err);
+              color: var(--err);
+              margin-top: 10px;
+            "
+            onclick="location.reload()"
+          >
+            <span>🔒</span> خروج آمن
+          </button>
+        </div>
+      </div>
+      <!-- /mainCard -->
+
+      <!-- ADS AREA — shown BELOW booking card -->
+      <div id="adsArea"></div>
+    </div>
+    <!-- /wrap -->
+
+    <footer>
+      رافال للسياحة © 2026 | <span>تخصصنا راحتكم</span><br />
+      تم التطوير بواسطة: <span>المهندس يوسف عبدالفتاح النجار</span>
+      <a href="tel:01004434810">📞 01004434810</a><br />
+      و<span>المهندس يوسف غريب قميح</span>
+      <a href="tel:01112378906">📞 01112378906</a>
+    </footer>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        get,
+        child,
+      } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyByDS1bBB_Ook1-sodJwpwVyiwtb_GF1TI",
+        authDomain: "rafal-d4284.firebaseapp.com",
+        databaseURL:
+          "https://rafal-d4284-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "rafal-d4284",
+        storageBucket: "rafal-d4284.firebasestorage.app",
+        messagingSenderId: "116875524772",
+        appId: "1:116875524772:web:30a452bf7a944cedd4c431",
+        measurementId: "G-KXG6MKEW5D",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const fbDB = getDatabase(app);
+
+      window.db = {
+        s: [],
+        ads: [],
+        pass: "123456",
+        about: {
+          text: "رافال للسياحة شركة متخصصة في تنظيم رحلات الحج والعمرة والسياحة الدينية، نسعى لتقديم أفضل الخدمات بأعلى مستوى من الراحة والاهتمام لضيوف الرحمن.",
+          active: true,
+        },
+        tripTypes: [
+          { id: "umrah", name: "عمرة", icon: "🕋" },
+          { id: "hajj", name: "حج", icon: "🕌" },
+          { id: "religious", name: "سياحة دينية", icon: "✈️" },
+          { id: "visit", name: "زيارة خارجية", icon: "🌍" },
+        ],
+        destinations: [
+          "عمرة رمضان - فندق 5 نجوم",
+          "عمرة مميزة - فندق 4 نجوم",
+          "حج الإفراد",
+          "حج القران",
+          "السياحة الدينية في تركيا",
+          "جولة الأندلس",
+          "الزيارات الخارجية الأوروبية",
+        ],
+      };
+      window._curBookingId = null;
+      window._curQR = null;
+
+      async function saveData() {
+        await set(ref(fbDB, "rafalSystem"), window.db);
+      }
+      async function loadData() {
+        try {
+          const snap = await get(child(ref(fbDB), "rafalSystem"));
+          if (snap.exists()) {
+            window.db = snap.val();
             if (!window.db.s) window.db.s = [];
             if (!window.db.ads) window.db.ads = [];
-            if (!window.db.tripTypes) window.db.tripTypes = [{id:'umrah',name:'عمرة',icon:'🕋'},{id:'hajj',name:'حج',icon:'🕌'},{id:'religious',name:'سياحة دينية',icon:'✈️'},{id:'visit',name:'زيارة خارجية',icon:'🌍'}];
-            if (!window.db.destinations) window.db.destinations = ['عمرة رمضان - فندق 5 نجوم', 'عمرة مميزة - فندق 4 نجوم', 'حج الإفراد', 'حج القران', 'السياحة الدينية في تركيا'];
-            if (!window.db.about) window.db.about = { text: 'رافال للسياحة شركة متخصصة في تنظيم رحلات الحج والعمرة والسياحة الدينية.', active: true };
-        } else {
+            if (!window.db.tripTypes)
+              window.db.tripTypes = [
+                { id: "umrah", name: "عمرة", icon: "🕋" },
+                { id: "hajj", name: "حج", icon: "🕌" },
+                { id: "religious", name: "سياحة دينية", icon: "✈️" },
+                { id: "visit", name: "زيارة خارجية", icon: "🌍" },
+              ];
+            if (!window.db.destinations)
+              window.db.destinations = [
+                "عمرة رمضان - فندق 5 نجوم",
+                "عمرة مميزة - فندق 4 نجوم",
+                "حج الإفراد",
+              ];
+            if (!window.db.about)
+              window.db.about = { text: "رافال للسياحة.", active: true };
+          } else {
             await saveData();
+          }
+        } catch (e) {
+          showToast("❌ خطأ في الاتصال");
         }
-    } catch(e) {
-        console.error(e);
-        showToast('❌ خطأ في الاتصال بقاعدة البيانات');
-    }
-}
+      }
 
-window.renderTripTypes = function() {
-    const sel = document.getElementById('tripSelector');
-    if (!sel) return;
-    sel.innerHTML = '';
-    (window.db.tripTypes || []).forEach(t => {
-        const div = document.createElement('div');
-        div.className = 'trip-option';
-        div.innerHTML = `<span class="icon">${t.icon}</span><span class="label">${t.name}</span>`;
-        div.onclick = () => {
-            document.querySelectorAll('.trip-option').forEach(x => x.classList.remove('selected'));
-            div.classList.add('selected');
-            document.getElementById('tripType').value = t.name;
-        };
-        sel.appendChild(div);
-    });
-};
+      /* THEME */
+      function initTheme() {
+        const s = localStorage.getItem("rafal-theme");
+        setTheme(
+          s ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"),
+        );
+      }
+      function setTheme(t) {
+        document.body.setAttribute("data-theme", t);
+        localStorage.setItem("rafal-theme", t);
+        document.getElementById("thIcon").innerText =
+          t === "dark" ? "☀️" : "🌙";
+      }
+      window.toggleTheme = () => {
+        const c = document.body.getAttribute("data-theme") || "light";
+        setTheme(c === "dark" ? "light" : "dark");
+      };
+      window.openWA = () => {
+        window.open("https://wa.me/201125366408", "_blank");
+      };
 
-window.renderDestinations = function() {
-    const sel = document.getElementById('rd');
-    if (!sel) return;
-    sel.innerHTML = '<option value="">-- اختر الوجهة --</option>';
-    (window.db.destinations || []).forEach(d => {
-        const opt = document.createElement('option');
-        opt.value = d; opt.textContent = d;
-        sel.appendChild(opt);
-    });
-};
+      /* TOAST */
+      window.showToast = function (msg, dur = 3000) {
+        const t = document.getElementById("toast");
+        t.innerHTML = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), dur);
+      };
 
-window.renderAds = function() {
-    const area = document.getElementById('adsArea');
-    if (!area) return;
-    if (!window.db.ads || window.db.ads.length === 0) { area.innerHTML = ''; return; }
-    area.innerHTML = '';
-    window.db.ads.forEach(ad => {
-        area.innerHTML += `<div class="ad-card">${ad.img ? `<img src="${ad.img}" class="ad-img" onerror="this.style.display='none'">` : ''}<div class="ad-body"><h3>${ad.title}</h3><p>${ad.body || ad.desc || ''}</p></div></div>`;
-    });
-};
+      /* NAV */
+      window.nav = function (v) {
+        [
+          "vHome",
+          "vReg",
+          "vSuccess",
+          "vTrack",
+          "vQRTrack",
+          "vLogin",
+          "vProfile",
+        ].forEach((id) => {
+          document.getElementById(id).classList.add("hidden");
+        });
+        document.getElementById("v" + v).classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
 
-window.renderAbout = function() {
-    const area = document.getElementById('aboutArea');
-    if (!area) return;
-    if (!window.db.about || !window.db.about.active) { area.innerHTML = ''; return; }
-    area.innerHTML = `<div class="about-card"><div class="about-card-inner"><h3>🕌 عن رافال للسياحة</h3><p>${window.db.about.text}</p></div></div>`;
-};
+      /* RENDER ABOUT */
+      window.renderAbout = function () {
+        const area = document.getElementById("aboutArea");
+        if (!area) return;
+        if (!window.db.about || !window.db.about.active) {
+          area.innerHTML = "";
+          return;
+        }
+        area.innerHTML = `<div class="about-card"><div class="about-inner"><h3>🕌 عن رافال للسياحة</h3><p>${window.db.about.text}</p></div></div>`;
+      };
 
-/* IMAGE UPLOAD via imgDD API */
-async function uploadImage(file) {
-    const formData = new FormData();
-    formData.append('image', file);
-    try {
-        const res = await fetch('https://api.imgdd.com/upload?key=642c6e12b065ce8cad8d3eba92010099', { method:'POST', body:formData });
-        const data = await res.json();
-        if (data && data.data && data.data.url) return data.data.url;
-        // fallback to base64
-        return await compress(file);
-    } catch(e) {
-        return await compress(file);
-    }
-}
+      /* RENDER ADS */
+      window.renderAds = function () {
+        const area = document.getElementById("adsArea");
+        if (!area) return;
+        if (!window.db.ads || window.db.ads.length === 0) {
+          area.innerHTML = "";
+          return;
+        }
+        area.innerHTML = "";
+        window.db.ads.forEach((ad) => {
+          area.innerHTML += `<div class="ad-card">${ad.img ? `<img src="${ad.img}" class="ad-img" onerror="this.style.display='none'">` : ""}
+    <div class="ad-body"><h3>${ad.title}</h3><p>${ad.body || ""}</p></div></div>`;
+        });
+      };
 
-async function compress(file) {
-    return new Promise(res => {
-        const img = new Image();
-        const url = URL.createObjectURL(file);
-        img.onload = () => {
-            const c = document.createElement('canvas');
+      /* RENDER TRIP TYPES */
+      window.renderTripTypes = function () {
+        const grid = document.getElementById("tripGrid");
+        if (!grid) return;
+        grid.innerHTML = "";
+        (window.db.tripTypes || []).forEach((t) => {
+          const d = document.createElement("div");
+          d.className = "trip-opt";
+          d.innerHTML = `<span class="icon">${t.icon}</span><span class="lbl2">${t.name}</span>`;
+          d.onclick = () => {
+            document
+              .querySelectorAll(".trip-opt")
+              .forEach((x) => x.classList.remove("sel"));
+            d.classList.add("sel");
+            document.getElementById("tripType").value = t.name;
+          };
+          grid.appendChild(d);
+        });
+      };
+
+      /* RENDER DESTS */
+      window.renderDests = function () {
+        const s = document.getElementById("rDest");
+        if (!s) return;
+        s.innerHTML = '<option value="">-- اختر الوجهة --</option>';
+        (window.db.destinations || []).forEach((d) => {
+          const o = document.createElement("option");
+          o.value = d;
+          o.textContent = d;
+          s.appendChild(o);
+        });
+      };
+
+      /* FILE LABEL */
+      window.updateFileLbl = function (input) {
+        const lbl = document.getElementById("fileLbl");
+        if (input.files && input.files[0]) {
+          lbl.innerHTML = "✅ " + input.files[0].name;
+          lbl.style.borderColor = "var(--ok)";
+          lbl.style.color = "var(--ok)";
+        }
+      };
+
+      /* IMAGE UPLOAD */
+      async function uploadImg(file) {
+        const fd = new FormData();
+        fd.append("image", file);
+        try {
+          const r = await fetch(
+            "https://api.imgdd.com/upload?key=642c6e12b065ce8cad8d3eba92010099",
+            { method: "POST", body: fd },
+          );
+          const d = await r.json();
+          if (d && d.data && d.data.url) return d.data.url;
+          return await compressImg(file);
+        } catch (e) {
+          return await compressImg(file);
+        }
+      }
+      async function compressImg(file) {
+        return new Promise((res) => {
+          const img = new Image();
+          const url = URL.createObjectURL(file);
+          img.onload = () => {
+            const c = document.createElement("canvas");
             const max = 600;
-            let w = img.width, h = img.height;
-            if (w > max) { h = h * max / w; w = max; }
-            if (h > max) { w = w * max / h; h = max; }
-            c.width = w; c.height = h;
-            c.getContext('2d').drawImage(img, 0, 0, w, h);
-            res(c.toDataURL('image/jpeg', 0.6));
+            let w = img.width,
+              h = img.height;
+            if (w > max) {
+              h = (h * max) / w;
+              w = max;
+            }
+            if (h > max) {
+              w = (w * max) / h;
+              h = max;
+            }
+            c.width = w;
+            c.height = h;
+            c.getContext("2d").drawImage(img, 0, 0, w, h);
+            res(c.toDataURL("image/jpeg", 0.65));
             URL.revokeObjectURL(url);
+          };
+          img.src = url;
+        });
+      }
+
+      /* REGISTER */
+      window.doRegister = async function () {
+        const n = document.getElementById("rName").value.trim();
+        const ph = document.getElementById("rPhone").value.trim();
+        const natId = document.getElementById("rNatId").value.trim();
+        const trip = document.getElementById("tripType").value;
+        const dest = document.getElementById("rDest").value;
+        if (!n || !ph) {
+          showToast("❌ أدخل الاسم ورقم الهاتف");
+          return;
+        }
+        if (!natId) {
+          showToast("❌ أدخل الرقم القومي أو رقم الجواز");
+          return;
+        }
+        if (!trip) {
+          showToast("❌ اختر نوع الرحلة");
+          return;
+        }
+        if (!dest) {
+          showToast("❌ اختر الوجهة");
+          return;
+        }
+        const btn = document.getElementById("subBtn");
+        btn.innerHTML = '<span class="spin"></span> جاري الحفظ...';
+        btn.disabled = true;
+        const files = document.getElementById("rImg").files;
+        let imgData = "";
+        if (files.length > 0) imgData = await uploadImg(files[0]);
+        const id = Math.floor(100000 + Math.random() * 900000);
+        const booking = {
+          id,
+          name: n,
+          phone: ph,
+          natId,
+          tripType: trip,
+          destination: dest,
+          count: document.getElementById("rCount").value || "1",
+          travelDate: document.getElementById("rDate").value || "غير محدد",
+          photo: imgData,
+          status: "PENDING",
+          user: null,
+          pass: null,
+          chat: [
+            {
+              txt: "تم استلام طلب حجزك بنجاح في رافال للسياحة. سيتم مراجعته والرد عليك في أقرب وقت.",
+              date: new Date().toLocaleString("ar-EG"),
+              sender: "admin",
+              seen: true,
+            },
+          ],
+          createdAt: Date.now(),
         };
-        img.src = url;
-    });
-}
+        window.db.s.push(booking);
+        await saveData();
+        nav("Success");
+        document.getElementById("showId").innerText = id;
+        // QR CODE
+        generateQR(id);
+        btn.innerHTML = "<span>🚀</span> إرسال طلب الحجز";
+        btn.disabled = false;
+        showToast("✅ تم إرسال الطلب بنجاح!");
+      };
 
-window.updateFileLabel = function(input) {
-    const label = document.getElementById('fileLabel');
-    if (input.files && input.files[0]) {
-        label.innerHTML = '✅ ' + input.files[0].name;
-        label.style.borderColor = 'var(--success)';
-        label.style.color = 'var(--success)';
-    }
-};
+      /* QR GENERATE */
+      function generateQR(id) {
+        const el = document.getElementById("qrCode");
+        el.innerHTML = "";
+        window._curQR = new QRCode(el, {
+          text: `${window.location.href.split("?")[0]}?track=${id}`,
+          width: 200,
+          height: 200,
+          colorDark: "#0a1f2e",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+      }
+      window.downloadQR = function () {
+        setTimeout(() => {
+          const canvas = document.querySelector("#qrCode canvas");
+          if (!canvas) {
+            showToast("❌ QR غير جاهز");
+            return;
+          }
+          // Create styled download
+          const dCanvas = document.createElement("canvas");
+          dCanvas.width = 300;
+          dCanvas.height = 370;
+          const ctx = dCanvas.getContext("2d");
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, 300, 370);
+          ctx.fillStyle = "#0a1f2e";
+          ctx.fillRect(0, 0, 300, 50);
+          ctx.fillStyle = "#d4a843";
+          ctx.font = "bold 18px Tajawal,Arial";
+          ctx.textAlign = "center";
+          ctx.fillText("رافال للسياحة", 150, 33);
+          ctx.drawImage(canvas, 50, 60, 200, 200);
+          ctx.fillStyle = "#0a1f2e";
+          ctx.font = "bold 14px Tajawal,Arial";
+          ctx.textAlign = "center";
+          ctx.fillText("امسح لمتابعة حجزك", 150, 285);
+          ctx.fillStyle = "#d4a843";
+          ctx.font = "bold 22px Tajawal,Arial";
+          ctx.fillText(document.getElementById("showId").innerText, 150, 320);
+          ctx.fillStyle = "#94a3b8";
+          ctx.font = "12px Tajawal,Arial";
+          ctx.fillText("rafal-tourism.com", 150, 350);
+          const link = document.createElement("a");
+          link.download = "rafal-qr.png";
+          link.href = dCanvas.toDataURL("image/png");
+          link.click();
+        }, 200);
+      };
 
-window.hReg = async function() {
-    const n = document.getElementById('rn').value.trim();
-    const p = document.getElementById('rp').value.trim();
-    const tripType = document.getElementById('tripType').value;
-    const dest = document.getElementById('rd').value;
-    if (!n || !p) { showToast('❌ برجاء إدخال الاسم ورقم الهاتف'); return; }
-    if (!tripType) { showToast('❌ برجاء اختيار نوع الرحلة'); return; }
-    if (!dest) { showToast('❌ برجاء اختيار الوجهة'); return; }
-    const btn = document.getElementById('subBtn');
-    btn.innerHTML = '<span class="loading-spinner"></span> جاري الحفظ...';
-    btn.disabled = true;
-    const files = document.getElementById('ri').files;
-    let imgData = '';
-    if (files.length > 0) { imgData = await uploadImage(files[0]); }
-    const id = Math.floor(100000 + Math.random() * 900000);
-    window.db.s.push({
-        id, name: n, phone: p, tripType,
-        destination: dest,
-        count: document.getElementById('rc').value || '1',
-        travelDate: document.getElementById('rt').value || 'غير محدد',
-        photo: imgData, status: 'PENDING', user: null, pass: null,
-        chat: [{ txt: 'تم استلام طلب حجزك بنجاح في رافال للسياحة. سيتم مراجعته والرد عليك في أقرب وقت.', date: new Date().toLocaleString('ar-EG'), sender: 'admin' }]
-    });
-    await saveData();
-    nav('Success');
-    document.getElementById('showId').innerText = id;
-    btn.innerHTML = '<span>🚀</span> إرسال طلب الحجز';
-    btn.disabled = false;
-    showToast('✅ تم إرسال الطلب بنجاح!');
-};
+      /* TRACK */
+      window.doTrack = async function () {
+        await loadData();
+        const val = document.getElementById("trackInput").value.trim();
+        if (!val) {
+          showToast("❌ أدخل رقم الحجز أو الرقم القومي");
+          return;
+        }
+        // search by booking ID or natId
+        const s = window.db.s.find(
+          (x) => String(x.id) === val || String(x.natId || "") === val,
+        );
+        renderTrackResult(s, "trackRes");
+      };
 
-window.hTrack = async function() {
-    await loadData();
-    const val = document.getElementById('ti').value.trim();
-    const s = window.db.s.find(x => String(x.id) === val);
-    const res = document.getElementById('tRes');
-    if (!s) { showToast('❌ هذا الرقم غير مسجل'); return; }
-    let chatHTML = buildChatHTML(s.chat || []);
-    if (s.status === 'ACCEPTED') {
-        res.innerHTML = `<div class="status-card status-accepted"><div style="font-size:3rem;margin-bottom:10px">✅</div><h3 style="margin-bottom:10px">تم تأكيد حجزك!</h3><p style="margin-bottom:15px">حسابك جاهز للاستخدام</p><div style="background:var(--bg-chat);border-radius:15px;padding:15px;margin-top:10px"><div style="margin-bottom:8px">👤 <b>اليوزر:</b> ${s.user}</div><div>🔑 <b>الباسورد:</b> ${s.pass}</div></div></div><div class="chat-section"><div class="chat-title">💬 رسائل الإدارة</div><div class="chat-box" id="trackChat">${chatHTML}</div></div>`;
-    } else if (s.status === 'REJECTED') {
-        res.innerHTML = `<div class="status-card status-rejected"><div style="font-size:3rem;margin-bottom:10px">❌</div><h3>نعتذر، تم رفض الطلب</h3><p style="margin-top:10px;font-size:.9rem">يرجى التواصل مع الإدارة للاستفسار</p></div><div class="chat-section"><div class="chat-title">💬 رسائل الإدارة</div><div class="chat-box" id="trackChat">${chatHTML}</div></div>`;
-    } else {
-        res.innerHTML = `<div class="status-card status-pending"><div style="font-size:3rem;margin-bottom:10px">⏳</div><h3>الطلب قيد المراجعة</h3><p style="margin-top:10px;font-size:.9rem">سيتم إشعارك فور الانتهاء من المراجعة</p></div><div class="chat-section"><div class="chat-title">💬 رسائل الإدارة</div><div class="chat-box" id="trackChat">${chatHTML}</div></div>`;
-    }
-    setTimeout(() => { const cb = document.getElementById('trackChat'); if(cb) cb.scrollTop = cb.scrollHeight; }, 100);
-};
+      window.doQRTrack = async function () {
+        await loadData();
+        const val = document.getElementById("qrInput").value.trim();
+        if (!val) {
+          showToast("❌ أدخل رقم الحجز");
+          return;
+        }
+        const s = window.db.s.find(
+          (x) => String(x.id) === val || String(x.natId || "") === val,
+        );
+        renderTrackResult(s, "qrTrackRes");
+      };
 
-function buildChatHTML(chat) {
-    if (!chat || chat.length === 0) return '<div style="text-align:center;color:var(--text-muted);padding:20px">لا توجد رسائل حالياً</div>';
-    return chat.map(m => {
-        const isAdmin = !m.sender || m.sender === 'admin';
-        return `<div class="msg-bubble ${isAdmin ? 'msg-admin' : 'msg-client'}"><div class="msg-sender">${isAdmin ? '🕋 الإدارة' : '👤 أنت'}</div>${m.txt}<span class="msg-date">${m.date}</span></div>`;
-    }).join('');
-}
+      function renderTrackResult(s, containerId) {
+        const res = document.getElementById(containerId);
+        if (!s) {
+          showToast("❌ لم يتم العثور على هذا الحجز");
+          res.innerHTML = "";
+          return;
+        }
+        let chatHTML = buildChatHTML(s.chat || []);
+        let statusHTML = "";
+        if (s.status === "ACCEPTED") {
+          statusHTML = `<div class="status-card st-ok"><div style="font-size:2.5rem;margin-bottom:8px">✅</div><h3>تم تأكيد حجزك!</h3><p style="margin-bottom:12px;font-size:.9rem">حسابك جاهز للاستخدام</p><div class="creds-box"><div class="creds-row"><b>👤 اليوزر:</b> <span>${s.user}</span></div><div class="creds-row"><b>🔑 الباسورد:</b> <span>${s.pass}</span></div></div></div>`;
+        } else if (s.status === "REJECTED") {
+          statusHTML = `<div class="status-card st-rej"><div style="font-size:2.5rem;margin-bottom:8px">❌</div><h3>نعتذر، تم رفض الطلب</h3><p style="margin-top:8px;font-size:.88rem">يرجى التواصل مع الإدارة للاستفسار</p></div>`;
+        } else {
+          statusHTML = `<div class="status-card st-pend"><div style="font-size:2.5rem;margin-bottom:8px">⏳</div><h3>الطلب قيد المراجعة</h3><p style="margin-top:8px;font-size:.88rem">سيتم الرد عليك في أقرب وقت</p></div>`;
+        }
+        res.innerHTML =
+          statusHTML +
+          `<div style="margin-top:16px"><div class="chat-title">💬 رسائل الإدارة</div><div class="chat-box" id="tChat">${chatHTML}</div></div>`;
+        setTimeout(() => {
+          const cb = document.getElementById("tChat");
+          if (cb) cb.scrollTop = cb.scrollHeight;
+        }, 100);
+      }
 
-window.hLogin = async function() {
-    await loadData();
-    const u = document.getElementById('ui').value.trim();
-    const p = document.getElementById('pi').value.trim();
-    const s = window.db.s.find(x => String(x.user) === u && String(x.pass) === p);
-    if (!s) { showToast('❌ بيانات الدخول غير صحيحة'); return; }
-    window._currentBookingId = s.id;
-    nav('Profile');
-    document.getElementById('uPh').src = s.photo || '';
-    document.getElementById('uNm').innerText = s.name;
-    document.getElementById('uTrip').innerText = s.tripType || 'عمرة';
-    document.getElementById('uDest').innerText = s.destination || '--';
-    document.getElementById('uDate').innerText = s.travelDate || '--';
-    document.getElementById('uCount').innerText = s.count || '1';
-    const statusMap = { 'ACCEPTED':'✅ مؤكد','REJECTED':'❌ مرفوض','PENDING':'⏳ قيد المراجعة' };
-    document.getElementById('uStatus').innerText = statusMap[s.status] || '--';
-    renderProfileChat(s);
-};
+      /* URL auto-track */
+      function checkURLTrack() {
+        const p = new URLSearchParams(window.location.search);
+        const tid = p.get("track");
+        if (tid) {
+          nav("QRTrack");
+          document.getElementById("qrInput").value = tid;
+          setTimeout(doQRTrack, 800);
+        }
+      }
 
-function renderProfileChat(s) {
-    const chatBox = document.getElementById('uChat');
-    chatBox.innerHTML = buildChatHTML(s.chat || []);
-    setTimeout(() => chatBox.scrollTop = chatBox.scrollHeight, 100);
-}
+      /* CHAT */
+      function buildChatHTML(chat) {
+        if (!chat || chat.length === 0)
+          return '<div style="text-align:center;color:var(--muted);padding:18px;font-size:.85rem">لا توجد رسائل حالياً</div>';
+        return chat
+          .map((m) => {
+            const isA = !m.sender || m.sender === "admin";
+            const seen = m.seen
+              ? '<span class="ticks tick-seen">✓✓</span>'
+              : '<span class="ticks tick-sent">✓</span>';
+            return `<div class="msg ${isA ? "msg-a" : "msg-c"}">
+      <div class="msg-who">${isA ? "🕋 الإدارة" : "👤 أنت"}</div>
+      ${m.txt}
+      <div class="msg-meta"><span class="msg-time">${m.date}</span>${isA ? "" : seen}</div>
+    </div>`;
+          })
+          .join("");
+      }
 
-window.sendClientMsg = async function() {
-    const input = document.getElementById('clientMsgInput');
-    const txt = input.value.trim();
-    if (!txt) return;
-    await loadData();
-    const s = window.db.s.find(x => x.id === window._currentBookingId);
-    if (!s) { showToast('❌ خطأ في الاتصال'); return; }
-    if (!s.chat) s.chat = [];
-    s.chat.push({ txt, date: new Date().toLocaleString('ar-EG'), sender: 'client' });
-    await saveData();
-    input.value = '';
-    renderProfileChat(s);
-    showToast('✅ تم إرسال رسالتك');
-};
+      window.sendClientMsg = async function () {
+        const inp = document.getElementById("clientMsg");
+        const txt = inp.value.trim();
+        if (!txt) return;
+        await loadData();
+        const s = window.db.s.find((x) => x.id === window._curBookingId);
+        if (!s) {
+          showToast("❌ خطأ في الاتصال");
+          return;
+        }
+        if (!s.chat) s.chat = [];
+        s.chat.push({
+          txt,
+          date: new Date().toLocaleString("ar-EG"),
+          sender: "client",
+          seen: false,
+        });
+        await saveData();
+        inp.value = "";
+        renderProfileChat(s);
+        showToast("✅ تم إرسال رسالتك");
+      };
 
-window.openWhatsApp = function() {
-    window.open('https://wa.me/201125366408', '_blank');
-};
+      /* LOGIN */
+      window.doLogin = async function () {
+        await loadData();
+        const u = document.getElementById("uLogin").value.trim();
+        const p = document.getElementById("pLogin").value.trim();
+        const s = window.db.s.find(
+          (x) => String(x.user) === u && String(x.pass) === p,
+        );
+        if (!s) {
+          showToast("❌ بيانات الدخول غير صحيحة");
+          return;
+        }
+        window._curBookingId = s.id;
+        nav("Profile");
+        document.getElementById("uPh").src = s.photo || "";
+        document.getElementById("uName").innerText = s.name;
+        document.getElementById("uTrip").innerText = s.tripType || "";
+        document.getElementById("uDest").innerText = s.destination || "--";
+        document.getElementById("uDate").innerText = s.travelDate || "--";
+        document.getElementById("uCount").innerText = s.count || "1";
+        const stMap = {
+          ACCEPTED: "✅ مؤكد",
+          REJECTED: "❌ مرفوض",
+          PENDING: "⏳ قيد المراجعة",
+        };
+        document.getElementById("uStatus").innerText = stMap[s.status] || "--";
+        renderProfileChat(s);
+        // Mark admin messages as seen
+        let changed = false;
+        (s.chat || []).forEach((m) => {
+          if (m.sender === "admin" && !m.seen) {
+            m.seen = true;
+            changed = true;
+          }
+        });
+        if (changed) saveData();
+      };
 
-window.nav = function(view) {
-    ['vHome','vReg','vSuccess','vTrack','vLogin','vProfile'].forEach(v => {
-        document.getElementById(v).classList.add('hidden');
-    });
-    document.getElementById('v' + view).classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-};
+      function renderProfileChat(s) {
+        const box = document.getElementById("uChat");
+        if (!box) return;
+        box.innerHTML = buildChatHTML(s.chat || []);
+        setTimeout(() => (box.scrollTop = box.scrollHeight), 100);
+      }
 
-function initTheme() {
-    const saved = localStorage.getItem('rafal-theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(saved || (prefersDark ? 'dark' : 'light'));
-}
-
-function setTheme(theme) {
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('rafal-theme', theme);
-    document.getElementById('themeIcon').innerText = theme === 'dark' ? '☀️' : '🌙';
-}
-
-window.toggleTheme = function() {
-    const cur = document.body.getAttribute('data-theme') || 'light';
-    setTheme(cur === 'dark' ? 'light' : 'dark');
-};
-
-window.showToast = function(msg) {
-    const t = document.getElementById('toast');
-    t.innerHTML = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
-};
-
-window.addEventListener('load', async () => {
-    initTheme();
-    await loadData();
-    renderTripTypes();
-    renderDestinations();
-    renderAds();
-    renderAbout();
-});
-</script>
-</body>
+      /* INIT */
+      window.addEventListener("load", async () => {
+        initTheme();
+        await loadData();
+        renderAbout();
+        renderTripTypes();
+        renderDests();
+        renderAds();
+        checkURLTrack();
+      });
+    </script>
+  </body>
 </html>
